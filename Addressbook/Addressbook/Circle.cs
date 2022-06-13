@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Addressbook
+namespace WebAddressbookTests
 {
      class Circle : Figure
     {
         private int radius;
-        private bool colored = false;
+        //private bool colored = false;
         public Circle(int radius)
         {
             this.radius = radius;
@@ -29,7 +29,7 @@ namespace Addressbook
             }
 
         }
-        public bool Colored
+        /*public bool Colored
         {
             get
             {
@@ -40,7 +40,6 @@ namespace Addressbook
             {
                 colored = value;
             }
-
-        }
+        }*/
     }
 }

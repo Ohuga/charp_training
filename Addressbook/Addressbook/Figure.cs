@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Addressbook
+namespace WebAddressbookTests
 {
      class Figure
-    {
+     {
         private bool colored = false;
         public bool Colored
         {
@@ -20,7 +20,6 @@ namespace Addressbook
             {
                 colored = value;
             }
-
         }
     }
 }

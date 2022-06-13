@@ -46,9 +46,11 @@ namespace WebAddressbookTests
             OpenHomePage();
             Login(new AccountDate("admin", "secret"));
             GoToNewAdd();
-            AddressData address = new AddressData("");
-            address.Fname = "Test1";
-            address.Lname = "Test2";
+            AddressData address = new AddressData("")
+            {
+                Fname = "Test1",
+                Lname = "Test2"
+            };
             FillNewAdd(address);
             SubmitNewAdd();
             ReturnToAddressPage();
@@ -68,10 +70,10 @@ namespace WebAddressbookTests
         {
             driver.FindElement(By.Name("firstname")).Click();
             driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys("Test1");
+            driver.FindElement(By.Name("firstname")).SendKeys(address.Fname);
             driver.FindElement(By.Name("lastname")).Click();
             driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys("Test2");
+            driver.FindElement(By.Name("lastname")).SendKeys(address.Lname);
         }
 
         private void GoToNewAdd()
@@ -83,9 +85,9 @@ namespace WebAddressbookTests
         {
             driver.FindElement(By.Name("user")).Click();
             driver.FindElement(By.Name("user")).Clear();
-            driver.FindElement(By.Name("user")).SendKeys("admin");
+            driver.FindElement(By.Name("user")).SendKeys(account.Username);
             driver.FindElement(By.Name("pass")).Clear();
-            driver.FindElement(By.Name("pass")).SendKeys("secret");
+            driver.FindElement(By.Name("pass")).SendKeys(account.Password);
             driver.FindElement(By.XPath("//input[@value='Login']")).Click();
         }
 
