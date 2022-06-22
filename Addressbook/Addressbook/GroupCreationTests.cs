@@ -19,18 +19,18 @@ namespace WebAddressbookTests
         [Test]
         public void GroupCreation()
         {
-            GoToHomePage();
-            Login(new AccountDate("admin", "secret"));
-            GoToGroupPage();
-            InitNewGroupCreation();
+            navigator.GoToHomePage();
+            loginHelper.Login(new AccountDate("admin", "secret"));
+            navigator.GoToGroupPage();
+            groupHelper.InitNewGroupCreation();
             GroupDate group = new GroupDate("111")
             {
                 Header = "111",
                 Footer = "111"
             };
-            FillGroupForm(group);
-            SubmitGroupCreation();
-            ReturnToGroupsPage();
+            groupHelper.FillGroupForm(group);
+            groupHelper.SubmitGroupCreation();
+            groupHelper.ReturnToGroupsPage();
             //driver.FindElement(By.LinkText("Logout")).Click();
             //driver.FindElement(By.Name("user")).Clear();
             //driver.FindElement(By.Name("user")).SendKeys("admin");
