@@ -23,11 +23,12 @@ namespace WebAddressbookTests
             driver = new FirefoxDriver();
             baseURL = "http://localhost/addressbook";
 
-            loginHelper = new LoginHelper(driver);
-            navigator = new NavigationHelper(driver);
-            groupHelper = new GroupHelper(driver);
+            loginHelper = new LoginHelper(this);
+            navigator = new NavigationHelper(this);
+            groupHelper = new GroupHelper(this);
         }
 
+        public IWebDriver Driver { get { return driver; } }
         public void Stop()
         {
             try

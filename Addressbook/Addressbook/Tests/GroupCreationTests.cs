@@ -19,18 +19,22 @@ namespace WebAddressbookTests
         [Test]
         public void GroupCreation()
         {
-            app.Navigator.GoToHomePage();
-            app.Auth.Login(new AccountDate("admin", "secret"));
-            app.Navigator.GoToGroupPage();
-            app.Groups.InitNewGroupCreation();
             GroupDate group = new GroupDate("111")
             {
                 Header = "111",
                 Footer = "111"
             };
-            app.Groups.FillGroupForm(group);
-            app.Groups.SubmitGroupCreation();
-            app.Groups.ReturnToGroupsPage();
-        } 
+            
+            app.Groups.Create(group);
+        }
+        [Test]
+        public void EmptyGroupCreation()
+        {
+
+            GroupDate group = new GroupDate("");
+            group.Header = "";
+            group.Footer = "";
+            app.Groups.Create(group); 
+        }
     }
 }
