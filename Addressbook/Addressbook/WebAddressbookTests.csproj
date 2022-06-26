@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddressHelper.cs" />
     <Compile Include="Model\AccountDate.cs" />
     <Compile Include="AppManager\ApplicationManager.cs" />
     <Compile Include="Other\Circle.cs" />

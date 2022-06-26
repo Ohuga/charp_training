@@ -24,5 +24,15 @@ namespace WebAddressbookTests
             driver.Navigate().GoToUrl("http://localhost/addressbook/group.php");
 
         }
+
+        //address
+        public void GoToNewAdd()
+        {
+            driver.FindElement(By.LinkText("add new")).Click();
+        }
+        public void ReturnToAddressPage()
+        {
+            driver.FindElement(By.LinkText("home page")).Click();
+        }
     }
 }

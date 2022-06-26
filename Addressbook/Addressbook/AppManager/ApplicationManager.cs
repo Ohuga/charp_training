@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
@@ -17,6 +18,7 @@ namespace WebAddressbookTests
         protected LoginHelper loginHelper;
         protected NavigationHelper navigator;
         protected GroupHelper groupHelper;
+        protected AddressHelper addressHelper;
 
         public ApplicationManager ()
         {
@@ -26,6 +28,7 @@ namespace WebAddressbookTests
             loginHelper = new LoginHelper(this);
             navigator = new NavigationHelper(this);
             groupHelper = new GroupHelper(this);
+            addressHelper = new AddressHelper(this);
         }
 
         public IWebDriver Driver { get { return driver; } }
@@ -41,6 +44,11 @@ namespace WebAddressbookTests
             }
 
         }
+
+        public AddressHelper Address
+        {
+            get { return addressHelper; }
+        }
         public LoginHelper Auth
         {
             get { return loginHelper; }
@@ -52,6 +60,7 @@ namespace WebAddressbookTests
         public GroupHelper Groups
             { 
             get { return groupHelper; } 
+
         }
     }
 }

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace WebAddressbookTests
 {
-    internal class AddressData
+    public class AddressData
     {
-        private string fname = "";
-        private string lname = "";
+        public string fname = "";
+        public string lname = "";
         
 
 
