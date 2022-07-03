@@ -30,7 +30,6 @@ namespace WebAddressbookTests
         [Test]
         public void EmptyGroupCreation()
         {
-
             GroupDate group = new GroupDate("");
             group.Header = "";
             group.Footer = "";
