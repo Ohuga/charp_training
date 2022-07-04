@@ -26,10 +26,22 @@ namespace WebAddressbookTests
             return this;
         }
 
+        public GroupHelper Modify(int p, GroupDate newData)
+        {
+            manager.Navigator.GoToGroupPage();
+            SelectGroup(p);
+            InitGroupModification();
+            FillGroupForm(newData);
+            SubmitGroupModification();
+            ReturnToGroupsPage();
+            return this;
+        }
+
+
         public GroupHelper Remove(int p)
         {
             manager.Navigator.GoToGroupPage();
-            SelectGroup(1);
+            SelectGroup(p);
             RemoveGroup();
             ReturnToGroupsPage();
             return this;
@@ -75,7 +87,18 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("delete")).Click();
             return this;
         }
- 
+        public GroupHelper SubmitGroupModification()
+        {
+            driver.FindElement(By.Name("update")).Click();
+            return this;
+        }
+
+        public GroupHelper InitGroupModification()
+        {
+            driver.FindElement(By.Name("edit")).Click();
+            return this;
+        }
+
     }
 }
 

@@ -13,13 +13,9 @@ namespace WebAddressbookTests
     [TestFixture]
     public class AddAddress : TestBase
     {
-        
-
         [Test]
         public void AddAddressTest()
         {
-            
-            
             app.Navigator.GoToNewAdd();
             AddressData address = new AddressData("")
             {
@@ -31,7 +27,19 @@ namespace WebAddressbookTests
                 .SubmitNewAdd()
                 .ReturnToAddressPage();
         }
-
-       
+        [Test]
+        public void AddEmptyAddress()
+        {
+            app.Navigator.GoToNewAdd();
+            AddressData address = new AddressData("")
+            {
+                Fname = "",
+                Lname = ""
+            };
+            app.Address
+                .FillNewAdd(address)
+                .SubmitNewAdd()
+                .ReturnToAddressPage();
+        }
     }
 }
