@@ -16,7 +16,7 @@ namespace WebAddressbookTests
         {
         }
 
-        public GroupHelper Create(GroupDate group)
+        public GroupHelper Create(GroupData group)
         {
             manager.Navigator.GoToGroupPage();
             InitNewGroupCreation();
@@ -26,7 +26,7 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public GroupHelper Modify(int p, GroupDate newData)
+        public GroupHelper Modify(int p, GroupData newData)
         {
             manager.Navigator.GoToGroupPage();
             SelectGroup(p);
@@ -54,7 +54,7 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("new")).Click();
             return this;
         }
-        public GroupHelper FillGroupForm(GroupDate group)
+        public GroupHelper FillGroupForm(GroupData group)
         {
             driver.FindElement(By.Name("group_name")).Click();
             driver.FindElement(By.Name("group_name")).Clear();

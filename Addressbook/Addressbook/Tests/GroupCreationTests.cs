@@ -19,7 +19,7 @@ namespace WebAddressbookTests
         [Test]
         public void GroupCreation()
         {
-            GroupDate group = new GroupDate("111")
+            GroupData group = new GroupData("111")
             {
                 Header = "111",
                 Footer = "111"
@@ -30,7 +30,7 @@ namespace WebAddressbookTests
         [Test]
         public void EmptyGroupCreation()
         {
-            GroupDate group = new GroupDate("");
+            GroupData group = new GroupData("");
             group.Header = "";
             group.Footer = "";
             app.Groups.Create(group); 

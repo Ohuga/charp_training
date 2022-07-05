@@ -35,68 +35,51 @@ namespace WebAddressbookTests
             driver.FindElement(By.LinkText("home page")).Click();
             return this;
         }
-        public void RemoveAddress()
+        public AddressHelper RemoveAddress(int p)
         {
-            manager.Navigator.GoToHomePage();
-            SelectAddress();
+            GoToAddressPage();
+            SelectAddress(p);
             DeleteAddress();
             CloseWindow();
+            return this;
         }
 
-        public void CloseWindow()
+        public AddressHelper CloseWindow()
         {
-            Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
+            driver.SwitchTo().Alert().Accept();
+            return this;
+            //Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
         }
 
-        public void DeleteAddress()
+        public AddressHelper DeleteAddress()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            return this;
         }
 
-        public void SelectAddress()
+        public AddressHelper SelectAddress(int p)
         {
-            driver.FindElement(By.Id("11")).Click();
+            driver.FindElement(By.XPath("//div[@id='content']/form[2]/table/tbody/tr["+(p+1)+"]/td[1]/input")).Click();
+            return this;
         }
 
-        public void GoToAddressPage()
+        public AddressHelper GoToAddressPage()
         {
-            driver.Navigate().GoToUrl("http://localhost/addressbook");
+            //driver.Navigate().GoToUrl("http://localhost/addressbook");
+            driver.FindElement(By.LinkText("home")).Click();
+            return this;
         }
-        public bool IsAlertPresent()
+        public AddressHelper SubmitAddressModification()
         {
-            try
-            {
-                driver.SwitchTo().Alert();
-                return true;
-            }
-            catch (NoAlertPresentException)
-            {
-                return false;
-            }
+            driver.FindElement(By.Name("update")).Click();
+            return this;
         }
 
-        public bool acceptNextAlert = true;
-
-        public string CloseAlertAndGetItsText()
+        public AddressHelper InitAddressModification(int p)
         {
-            try
-            {
-                IAlert alert = driver.SwitchTo().Alert();
-                string alertText = alert.Text;
-                if (acceptNextAlert)
-                {
-                    alert.Accept();
-                }
-                else
-                {
-                    alert.Dismiss();
-                }
-                return alertText;
-            }
-            finally
-            {
-                acceptNextAlert = true;
-            }
+            //driver.FindElement(By.Name("edit")).Click();
+            driver.FindElement(By.XPath("//div[@id='content']/form[2]/table/tbody/tr[" + (p + 1) + "]/td[8]/a")).Click();
+            return this;
         }
     }
 }

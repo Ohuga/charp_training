@@ -15,7 +15,7 @@ namespace WebAddressbookTests
         [Test]
         public void RemoveAddresses()
         {
-            app.Address.RemoveAddress();
+            app.Address.RemoveAddress(1);
 
         }
     }

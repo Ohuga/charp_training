@@ -68,8 +68,9 @@
     <Compile Include="AppManager\ApplicationManager.cs" />
     <Compile Include="Other\Circle.cs" />
     <Compile Include="Other\Figure.cs" />
-    <Compile Include="Model\GroupDate.cs" />
+    <Compile Include="Model\GroupData.cs" />
     <Compile Include="AppManager\GroupHelper.cs" />
+    <Compile Include="Tests\AddressModificationsTests.cs" />
     <Compile Include="Tests\GroupModificationTests.cs" />
     <Compile Include="Tests\GroupRemovalTest.cs" />
     <Compile Include="AppManager\HelperBase.cs" />

@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace WebAddressbookTests
 {
-    public class GroupDate
+    public class GroupData
     {
         private string name;
         private string header = "" ;
         private string footer = "";
 
 
-        public GroupDate(string name)
+        public GroupData(string name)
         {
             this.name = name;
         }

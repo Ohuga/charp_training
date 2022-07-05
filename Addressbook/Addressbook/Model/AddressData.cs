@@ -8,39 +8,15 @@ namespace WebAddressbookTests
 {
     public class AddressData
     {
-        public string fname = "";
-        public string lname = "";
-        
-
-
+                
+        public AddressData() { }
         public AddressData(string fname)
         {
-            this.fname = fname;
+            Fname = fname;
         }
-
-        public string Fname
-        {
-            get
-            {
-                return fname;
-            }
-            set
-            {
-                fname = value;
-            }
-
-        }
-        public string Lname
-        {
-            get
-            {
-                return lname;
-            }
-            set
-            {
-                lname = value;
-            }
-        }
+        public string Fname {get;set;}
+        
+        public string Lname { get;set;}
         
     }
 }
