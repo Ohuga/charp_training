@@ -10,7 +10,7 @@ using OpenQA.Selenium.Support.UI;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class RemoveAdd : TestBase
+    public class RemoveAdd : AuthTestBase
     {
         [Test]
         public void RemoveAddresses()

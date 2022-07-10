@@ -11,7 +11,7 @@ using OpenQA.Selenium.Support.UI;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class AddAddress : TestBase
+    public class AddAddress : AuthTestBase
     {
         [Test]
         public void AddAddressTest()
