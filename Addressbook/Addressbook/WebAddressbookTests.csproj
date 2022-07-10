@@ -64,7 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppManager\AddressHelper.cs" />
-    <Compile Include="Model\AccountDate.cs" />
+    <Compile Include="Model\AccountData.cs" />
     <Compile Include="AppManager\ApplicationManager.cs" />
     <Compile Include="Other\Circle.cs" />
     <Compile Include="Other\Figure.cs" />
@@ -83,6 +83,7 @@
     <Compile Include="Tests\GroupCreationTests.cs" />
     <Compile Include="Tests\AddAddress.cs" />
     <Compile Include="Model\AddressData.cs" />
+    <Compile Include="Tests\TestSuiteFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram3.cd" />
