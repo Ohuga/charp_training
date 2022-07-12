@@ -15,11 +15,22 @@ namespace WebAddressbookTests
         {
         }
         public void GoToHomePage()
+
         {
-            driver.Navigate().GoToUrl("http://localhost/addressbook/edit.php");
+            if (driver.Url == "http://localhost/addressbook/")
+            {
+                return;
+            }
+            driver.Navigate().GoToUrl("http://localhost/addressbook/");
         }
+
         public void GoToGroupPage()
         {
+            if (driver.Url ==  "http://localhost/addressbook/group.php"
+                && IsElementPresent(By.Name("new")))
+            {
+                return;
+            }
             driver.FindElement(By.LinkText("groups")).Click();
             driver.Navigate().GoToUrl("http://localhost/addressbook/group.php");
         }
