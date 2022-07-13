@@ -14,10 +14,11 @@ namespace WebAddressbookTests
         public void AddressModificationTest()
         {
             app.Address.GoToAddressPage()
-                .InitAddressModification(1)
-                .FillNewAdd(new AddressData { Fname = "234", Lname = "345" })
-                .SubmitAddressModification()
-                .ReturnToAddressPage();
+            .AddIfEmptyList()
+            .InitAddressModification(1)
+            .FillNewAdd(new AddressData { Fname = "234", Lname = "345" })
+            .SubmitAddressModification()
+            .ReturnToAddressPage();
 
         }
     }

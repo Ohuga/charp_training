@@ -15,6 +15,19 @@ namespace WebAddressbookTests
             : base(manager)
         {
         }
+
+        public AddressHelper AddIfEmptyList()
+        {
+            if (GetSearchCount() == 0)
+            {
+                FillNewAdd(new AddressData { Fname = "1", Lname = "2" });
+            }
+            return this;
+        }
+        private int GetSearchCount()
+        {
+            return int.Parse(driver.FindElement(By.Id("search_count")).Text);
+        }
         public AddressHelper SubmitNewAdd()
         {
             driver.FindElement(By.Name("submit")).Click();
@@ -22,12 +35,8 @@ namespace WebAddressbookTests
         }
         public AddressHelper FillNewAdd(AddressData address)
         {
-            driver.FindElement(By.Name("firstname")).Click();
-            driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys(address.Fname);
-            driver.FindElement(By.Name("lastname")).Click();
-            driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys(address.Lname);
+            Type(By.Name("firstname"), address.Fname);
+            Type(By.Name("lastname"), address.Lname);
             return this;
         }
         public AddressHelper ReturnToAddressPage()

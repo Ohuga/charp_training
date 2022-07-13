@@ -16,6 +16,17 @@ namespace WebAddressbookTests
         {
         }
 
+        public GroupHelper AddIfEmpty()
+        {
+            manager.Navigator.GoToGroupPage();
+            var exists = driver.FindElements(By.CssSelector("span.group")).Any();
+            if (!exists)
+            {
+                Create(new GroupData("1") { Header = "2", Footer = "3" });
+            }
+            return this;
+        }
+
         public GroupHelper Create(GroupData group)
         {
             manager.Navigator.GoToGroupPage();
