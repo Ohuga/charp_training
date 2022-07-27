@@ -37,5 +37,9 @@ namespace WebAddressbookTests
                 return false;
             }
         }
+        public ICollection<IWebElement> GetCollection(string name)
+        {
+            return driver.FindElements(By.Name(name));
+        }
     }
 }

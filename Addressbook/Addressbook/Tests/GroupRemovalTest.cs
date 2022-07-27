@@ -9,6 +9,7 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
 
+
 namespace WebAddressbookTests
 {
     [TestFixture]
@@ -17,9 +18,15 @@ namespace WebAddressbookTests
         [Test]
         public void GroupRemovalTest()
         {
-            
-            app.Groups.AddIfEmpty().Remove(1);
-            
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+
+            app.Groups.AddIfEmpty().Remove(0);
+
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
+
+            oldGroups.RemoveAt(0);
+            Assert.AreEqual(oldGroups, newGroups);
+
         }
     }
 }

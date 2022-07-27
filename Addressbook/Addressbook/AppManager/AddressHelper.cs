@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -88,6 +89,17 @@ namespace WebAddressbookTests
         {
             //driver.FindElement(By.Name("edit")).Click();
             driver.FindElement(By.XPath("//div[@id='content']/form[2]/table/tbody/tr[" + (p + 1) + "]/td[8]/a")).Click();
+            return this;
+        }
+
+        public AddressHelper AddAddress(AddressData address)
+        {
+            driver.FindElement(By.LinkText("add new")).Click();
+
+            this
+                .FillNewAdd(address)
+                .SubmitNewAdd()
+                .ReturnToAddressPage();
             return this;
         }
     }
