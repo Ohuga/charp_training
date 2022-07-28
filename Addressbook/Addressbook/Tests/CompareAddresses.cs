@@ -12,31 +12,17 @@ namespace  WebAddressbookTests
     [TestFixture]
     public class CompareAddress : AuthTestBase
     {
-        public List<AddressData> GetAddressList()
-        {
-            List <AddressData> addresses = new List <AddressData>();
-            app.Navigator.GoToAddressPage();
-            ICollection<IWebElement> elements = app.Navigator.GetCollection("entry");
-            foreach(IWebElement element in elements)
-            {
-                ReadOnlyCollection < IWebElement > names = element.FindElements(By.TagName("td"));
-                String lname = names[1].Text;
-                String fname = names[2].Text;
-                addresses.Add(new AddressData(fname,lname));
-            }
-            return addresses;
-        }
         [Test]
         public void CompareAddressListTest()
         {
             //Get Address collection
-            List<AddressData> oldList = GetAddressList();
+            List<AddressData> oldList = app.Address.GetAddressList();
             //Create new Address
             AddressData adress = new AddressData("Vasya", "Petrov");
             //Add new Address to Database
             app.Address.AddAddress(adress);
             //Get updated Address Collection
-            List<AddressData> newList = GetAddressList();
+            List<AddressData> newList = app.Address.GetAddressList();
             //Remove Addres from Data Base
             app.Address.RemoveAddress(1);
             //Insert Address in old collection

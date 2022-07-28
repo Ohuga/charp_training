@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -63,6 +64,7 @@ namespace WebAddressbookTests
 
         public AddressHelper DeleteAddress()
         {
+            addressCache = null;
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
             return this;
         }
@@ -94,6 +96,8 @@ namespace WebAddressbookTests
 
         public AddressHelper AddAddress(AddressData address)
         {
+            addressCache = null;
+
             driver.FindElement(By.LinkText("add new")).Click();
 
             this
@@ -102,5 +106,26 @@ namespace WebAddressbookTests
                 .ReturnToAddressPage();
             return this;
         }
+
+        public List<AddressData> GetAddressList()
+        {
+            if (addressCache == null)
+            {
+                addressCache = new List<AddressData>();
+                manager.Navigator.GoToAddressPage();
+                ICollection<IWebElement> elements = manager.Navigator.GetCollection("entry");
+                foreach (IWebElement element in elements)
+                {
+                    ReadOnlyCollection<IWebElement> names = element.FindElements(By.TagName("td"));
+                    String lname = names[1].Text;
+                    String fname = names[2].Text;
+                    addressCache.Add(new AddressData(fname, lname));
+                }
+            }
+            return addressCache;
+        }
+
+        private List<AddressData> addressCache = null;
+
     }
 }
