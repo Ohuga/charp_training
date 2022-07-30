@@ -131,9 +131,9 @@ namespace WebAddressbookTests
         public AddressData GetContactInformationFromTable(int index)
         {
             manager.Navigator.GoToHomePage();
-
+            
             IList<IWebElement> cells = driver.FindElements(By.Name("entry"))[index]
-                .FindElements(By.Name("td"));
+                .FindElements(By.TagName("td"));
             string lastName = cells[1].Text;
             string firstName = cells[2].Text;
             string address = cells[3].Text;
@@ -149,7 +149,8 @@ namespace WebAddressbookTests
         public AddressData GetContactInformationFromEditForm(int index)
         {
             manager.Navigator.GoToHomePage();
-            InitAddressModification(index); //должен быть метод вызывющий Edit на главной странице, лекция 5.3 09.40 создает у себя такой метод
+            manager.Navigator.GoToAddressPage();
+            InitAddressModification(index  + 1); 
             string firstName = driver.FindElement(By.Name("firstname")).GetAttribute("value");
             string lastName = driver.FindElement(By.Name("lastname")).GetAttribute("value");
             string address = driver.FindElement(By.Name("address")).GetAttribute("value");
@@ -169,8 +170,8 @@ namespace WebAddressbookTests
         public String GetContactInformationFromProperty(int index)
         {
             manager.Navigator.GoToHomePage();
-            GotoAddressInfo(index);
-            string all = driver.FindElement(By.TagName("content")).GetAttribute("value");
+            GotoAddressInfo(index + 1);
+            string all = driver.FindElement(By.Id("content")).FindElement(By.TagName("b")).Text;
             return all;
         }
 
@@ -192,8 +193,3 @@ namespace WebAddressbookTests
 }
 
 
-//public void InitContactModification(int index)
-// 
-// driver.FindElement(By.Name("entry")) [index]
-//    .FindElements(By.Name("td"))[7]
-//    .FindElements(By.Name("a")).Click();

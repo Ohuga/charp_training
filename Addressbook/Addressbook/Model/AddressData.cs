@@ -10,6 +10,7 @@ namespace WebAddressbookTests
     public class AddressData: IComparable
     {
         private string allPhones;
+        private string all;
 
         public AddressData() { }
         public AddressData(string fname)
@@ -41,12 +42,12 @@ namespace WebAddressbookTests
         public string All
         {
             get
-            {// Todo rewrite
-                if (allPhones != null)
-                    return allPhones;
-                return (CleanUp(HomePhone) + CleanUp(MobilePhone) + CleanUp(WorkPhone)).Trim();
+            {
+                if (all != null)
+                    return all;
+                return (Fname + " " + Lname + (Address) + CleanUp(HomePhone) + CleanUp(MobilePhone) + CleanUp(WorkPhone)).Trim();
             }
-            set { allPhones = value; }
+            set { all = value; }
         }
 
 

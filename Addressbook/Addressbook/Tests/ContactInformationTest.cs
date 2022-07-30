@@ -25,8 +25,9 @@ namespace WebAddressbookTests
         {
             String fromProperty = app.Address.GetContactInformationFromProperty(0);
             AddressData fromForm = app.Address.GetContactInformationFromEditForm(0);
+            string all = fromForm.All;
             // verification
-            Assert.AreEqual(fromProperty, fromForm.All);
+            Assert.AreEqual(fromProperty, all);
         }
     }
 }
