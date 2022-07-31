@@ -25,6 +25,7 @@ namespace WebAddressbookTests
         public string Fname {get;set;}
         public string Lname { get;set;}
         public string Address { get; set; }
+        public string Email { get; set; }
         public string HomePhone { get; set; }
         public string MobilePhone { get; set; }
         public string WorkPhone { get; set; }
@@ -45,7 +46,7 @@ namespace WebAddressbookTests
             {
                 if (all != null)
                     return all;
-                return (Fname + " " + Lname + (Address) + CleanUp(HomePhone) + CleanUp(MobilePhone) + CleanUp(WorkPhone)).Trim();
+                return (Fname + " " + Lname + (Address) + Email + CleanUp(HomePhone) + CleanUp(MobilePhone) + CleanUp(WorkPhone)).Trim();
             }
             set { all = value; }
         }

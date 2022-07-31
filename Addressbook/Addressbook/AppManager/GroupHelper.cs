@@ -43,6 +43,7 @@ namespace WebAddressbookTests
                         Id = element.FindElement(By.TagName("input")).GetAttribute("value")
                     });                
                 }
+                /*
                 string allGroupNames = driver.FindElement(By.CssSelector("div#content from")).Text;
                 string[] parts = allGroupNames.Split('\n');
                 int shift = groupCache.Count - parts.Length;
@@ -52,7 +53,7 @@ namespace WebAddressbookTests
                         groupCache[i].Name = "";
                     else
                         groupCache[i].Name = parts[i - shift].Trim();
-                }
+                }*/
             }
             return new List<GroupData>(groupCache);
         }

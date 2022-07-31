@@ -137,11 +137,13 @@ namespace WebAddressbookTests
             string lastName = cells[1].Text;
             string firstName = cells[2].Text;
             string address = cells[3].Text;
+            string email = cells[4].Text;
             string allPhones = cells[5].Text;
 
             return new AddressData(firstName, lastName)
             {
                 Address = address,
+                Email = email,
                 AllPhones = allPhones,
             };
         }
@@ -158,13 +160,15 @@ namespace WebAddressbookTests
             string homePhone = driver.FindElement(By.Name("home")).GetAttribute("value");
             string mobilePhone = driver.FindElement(By.Name("mobile")).GetAttribute("value");
             string workPhone = driver.FindElement(By.Name("work")).GetAttribute("value");
+            string email = driver.FindElement(By.Name("email")).GetAttribute("value");
 
             return new AddressData(firstName, lastName)
             {
                 Address = address,
                 HomePhone = homePhone,
                 MobilePhone = mobilePhone,  
-                WorkPhone = workPhone
+                WorkPhone = workPhone,
+                Email = email,
             };
         }
         public String GetContactInformationFromProperty(int index)
