@@ -100,5 +100,10 @@ namespace WebAddressbookTests
                 return CompareTo(a);
             return 1;
         }
+
+        public override string ToString()
+        {
+            return "Fname = " + Fname + "\nLname = " + Lname;
+        }
     }
 }
