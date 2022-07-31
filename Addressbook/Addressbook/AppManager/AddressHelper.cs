@@ -154,6 +154,7 @@ namespace WebAddressbookTests
             manager.Navigator.GoToAddressPage();
             InitAddressModification(index  + 1); 
             string firstName = driver.FindElement(By.Name("firstname")).GetAttribute("value");
+            string middleName = driver.FindElement(By.Name("middlename")).GetAttribute("value");
             string lastName = driver.FindElement(By.Name("lastname")).GetAttribute("value");
             string address = driver.FindElement(By.Name("address")).GetAttribute("value");
 
@@ -169,13 +170,24 @@ namespace WebAddressbookTests
                 MobilePhone = mobilePhone,  
                 WorkPhone = workPhone,
                 Email = email,
+                Mname = middleName
             };
         }
         public String GetContactInformationFromProperty(int index)
         {
             manager.Navigator.GoToHomePage();
             GotoAddressInfo(index + 1);
+            //return (Fname + " " + Lname + (Address) + Email + CleanUp(HomePhone) + CleanUp(MobilePhone) + CleanUp(WorkPhone)).Trim();
             string all = driver.FindElement(By.Id("content")).FindElement(By.TagName("b")).Text;
+            string content = driver.FindElement(By.Id("content")).Text;
+            IList<string> attributes = content.Split('\n');
+            //< a href = "mailto:email" > email </ a >
+            all += attributes[4] +
+                attributes[10] +
+                Regex.Replace(attributes[6], @"H: ", String.Empty) + "\n" +
+                Regex.Replace(attributes[7], @"M: ", String.Empty) + "\n" +
+                Regex.Replace(attributes[8], @"W: ", String.Empty);
+ 
             return all;
         }
 
