@@ -105,5 +105,10 @@ namespace WebAddressbookTests
         {
             return "Fname = " + Fname + "\nLname = " + Lname;
         }
+
+        public override int GetHashCode()
+        {
+            return Fname.GetHashCode() + Lname.GetHashCode();
+        }
     }
 }

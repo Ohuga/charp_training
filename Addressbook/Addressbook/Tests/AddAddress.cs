@@ -28,16 +28,19 @@ namespace WebAddressbookTests
         public void AddAddressTest(AddressData address)
         {
             app.Navigator.GoToNewAdd();
-            /*
-            AddressData address = new AddressData("")
-            {
-                Fname = "Test1",
-                Lname = "Test2"
-            };*/
-            app.Address
-                .FillNewAdd(address)
-                .SubmitNewAdd()
-                .ReturnToAddressPage();
+
+            List<AddressData> oldAddresses = app.Address.GetAddressList();
+
+            app.Address.AddAddress(address);
+            List<AddressData> newAddresses = app.Address.GetAddressList();
+
+            Assert.AreEqual(oldAddresses.Count + 1, newAddresses);
+            oldAddresses.Add(address);
+            oldAddresses.Sort();
+            newAddresses.Sort();
+            Assert.AreEqual(oldAddresses, newAddresses);
+            for (var i = 0; i < oldAddresses.Count; i++)
+            Assert.AreEqual(oldAddresses[i], newAddresses[i]);
         }
         [Test]
         public void AddEmptyAddress()
