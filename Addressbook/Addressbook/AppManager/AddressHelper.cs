@@ -33,6 +33,7 @@ namespace WebAddressbookTests
 
         public AddressHelper SubmitNewAdd()
         {
+            addressCache = null;
             driver.FindElement(By.Name("submit")).Click();
             return this;
         }
