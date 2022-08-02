@@ -33,7 +33,7 @@ namespace WebAddressbookTests
         public static IEnumerable<GroupData> GroupDataFromFile()
         {
             List<GroupData> groups = new List<GroupData>();
-            string[] lines = File.ReadAllLines(@"group.csv");
+            string[] lines = File.ReadAllLines(@"groups.csv");
             foreach (string l in lines)
             {
                 string[] parts = l.Split(',');
@@ -75,7 +75,7 @@ namespace WebAddressbookTests
 
             List<GroupData> oldGroups = app.Groups.GetGroupList();
 
-            app.Groups.Create(group);
+            app.Groups.Create(group).ReturnToGroupsPage();
 
             Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
 
