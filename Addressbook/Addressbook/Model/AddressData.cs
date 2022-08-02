@@ -62,21 +62,49 @@ namespace WebAddressbookTests
             {
                 if (all != null)
                     return all;
-                return (Fname + " " + Mname + " " + Lname + (Address) + '\r' + Email + '\r' + Email2 + '\r' + Email3 + '\r' + CleanUp(HomePhone) + CleanUp(MobilePhone) + CleanUp(WorkPhone) + '\r').Trim() + '\r';
+                return (CleanUpAttribute(CleanUpNames(Fname) + CleanUpNames(Mname) +
+                    CleanUpNames(Lname)) +
+                    CleanUpAttribute(Address) +
+                    SetBreaks(CleanUp(HomePhone,1) + CleanUp(MobilePhone,2) + CleanUp(WorkPhone,3)) +
+                    SetBreaks(CleanUpAttribute(Email) + CleanUpAttribute(Email2) + CleanUpAttribute(Email3))).Trim();
             }
             set { all = value; }
         }
 
 
-        private string CleanUp(string phone)
+        private string CleanUp(string phone, int attribute = 0)
         {
             if (phone == null || phone == "")
                 return "";
+            string res = "";
+            if (attribute == 1) res += "H: ";
+            if (attribute == 2) res += "M: ";
+            if (attribute == 3) res += "W: ";
 
-            return Regex.Replace(phone, "[ -()]" ,"") + "\r\n";
+            return res + Regex.Replace(phone, "[ -()]" ,"") + "\r\n";
             //phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")",
         }
+        private string CleanUpNames(string name)
+        {
+            if (name == null || name == "")
+                return "";
 
+            return name + " ";
+        }
+        private string SetBreaks(string name)
+        {
+            if (name == null || name == "")
+                return "";
+
+            return "\r\n" + name;
+        }
+        private string CleanUpAttribute(string name)
+        {
+            if (name == null || name == "")
+                return "";
+
+            return (name).Trim() + "\r\n";
+        }
         public override bool Equals(object obj)
         {
             if (obj == null)

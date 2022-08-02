@@ -185,6 +185,7 @@ namespace WebAddressbookTests
             //return (Fname + " " + Lname + (Address) + Email + CleanUp(HomePhone) + CleanUp(MobilePhone) + CleanUp(WorkPhone)).Trim();
             string all = driver.FindElement(By.Id("content")).FindElement(By.TagName("b")).Text;
             string content = driver.FindElement(By.Id("content")).Text;
+            /*
             IList<string> attributes = content.Split('\n');
             //< a href = "mailto:email" > email </ a >
             all += attributes[4] +
@@ -192,8 +193,8 @@ namespace WebAddressbookTests
                 Regex.Replace(attributes[6], @"H: ", String.Empty) + "\n" +
                 Regex.Replace(attributes[7], @"M: ", String.Empty) + "\n" +
                 Regex.Replace(attributes[8], @"W: ", String.Empty);
- 
-            return all;
+ */
+            return content;
         }
 
         private AddressHelper GotoAddressInfo(int index)
