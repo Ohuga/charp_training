@@ -22,7 +22,7 @@ namespace WebAddressbookTests
         {
             if (GetSearchCount() == 0)
             {
-                FillNewAdd(new AddressData { Fname = "1", Lname = "2" });
+                FillNewAdd(new AddressData { Fname = "1", Lname = "2" }).SubmitNewAdd();
             }
             return this;
         }
@@ -85,6 +85,7 @@ namespace WebAddressbookTests
         }
         public AddressHelper SubmitAddressModification()
         {
+            addressCache = null;
             driver.FindElement(By.Name("update")).Click();
             return this;
         }
