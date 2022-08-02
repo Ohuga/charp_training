@@ -10,6 +10,7 @@ namespace WebAddressbookTests
     public class AddressData: IComparable
     {
         private string allPhones;
+        private string allEmails;
         private string all;
 
         public AddressData() { }
@@ -27,6 +28,9 @@ namespace WebAddressbookTests
         public string Mname { get; set; }
         public string Address { get; set; }
         public string Email { get; set; }
+        public string Email2 { get; set; }
+        public string Email3 { get; set; }
+
         public string HomePhone { get; set; }
         public string MobilePhone { get; set; }
         public string WorkPhone { get; set; }
@@ -41,13 +45,24 @@ namespace WebAddressbookTests
             set { allPhones = value; }
         }
 
+        public string AllEmails
+        {
+            get
+            {
+                if (allEmails != null)
+                    return allEmails;
+                return (CleanUp(Email) + CleanUp(Email2) + CleanUp(Email3)).Trim();
+            }
+            set { allEmails = value; }
+        }
+
         public string All
         {
             get
             {
                 if (all != null)
                     return all;
-                return (Fname + " " + Mname + " " + Lname + (Address) + '\r' + Email + '\r' + CleanUp(HomePhone) + CleanUp(MobilePhone) + CleanUp(WorkPhone) + '\r').Trim() + '\r';
+                return (Fname + " " + Mname + " " + Lname + (Address) + '\r' + Email + '\r' + Email2 + '\r' + Email3 + '\r' + CleanUp(HomePhone) + CleanUp(MobilePhone) + CleanUp(WorkPhone) + '\r').Trim() + '\r';
             }
             set { all = value; }
         }
