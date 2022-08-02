@@ -8,7 +8,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
-
+using System.Xml.Serialization;
 
 namespace WebAddressbookTests
 {
@@ -30,7 +30,7 @@ namespace WebAddressbookTests
             return groups; 
         }
 
-        public static IEnumerable<GroupData> GroupDataFromFile()
+        public static IEnumerable<GroupData> GroupDataFromCsvFile()
         {
             List<GroupData> groups = new List<GroupData>();
             string[] lines = File.ReadAllLines(@"groups.csv");
@@ -46,8 +46,16 @@ namespace WebAddressbookTests
             return groups;
         }
 
+        public static IEnumerable<GroupData> GroupDataFromXmlFile()
+        {
+            using (var fs = new FileStream("groups.xml", FileMode.Open))
+            {
+                var groups = new XmlSerializer(typeof(List<GroupData>)).Deserialize(fs) as List<GroupData>;
+                return groups;
+            }            
+        }
 
-        [Test, TestCaseSource("GroupDataFromFile")]
+        [Test, TestCaseSource("GroupDataFromXmlFile")]
         public void GroupCreation(GroupData group)
         {
 
@@ -63,7 +71,7 @@ namespace WebAddressbookTests
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
         }
-        
+
         [Test]
         public void BadNameGroupCreation()
         {

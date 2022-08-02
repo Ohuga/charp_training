@@ -16,7 +16,7 @@ namespace WebAddressbookTests
         {
             int count = Convert.ToInt32(args[0]);   
             StreamWriter writer = new StreamWriter(args[1]);
-            string format = args[3];
+            string format = args[2];
 
             List<GroupData> groups = new List<GroupData>();
             for (int i = 0; i < count; i++)
