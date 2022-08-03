@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
@@ -23,8 +26,20 @@ namespace WebAddressbookTests
             }
             return address;
         }
+        public static IEnumerable<AddressData> ContactsDataFromXmlFile()
+        {
+            using (var fs = new FileStream("contacts.xml", FileMode.Open))
+            {
+                var contacts = new XmlSerializer(typeof(List<AddressData>)).Deserialize(fs) as List<AddressData>;
+                return contacts;
+            }
+        }
+        public static IEnumerable<AddressData> ContactsDataFromJsonFile()
+        {
+            return JsonConvert.DeserializeObject<List<AddressData>>(File.ReadAllText("contacts.json"));
+        }
 
-        [Test, TestCaseSource("RandomAddressDataProvider")]
+        [Test, TestCaseSource("ContactsDataFromXmlFile")]
         public void AddAddressTest(AddressData address)
         {
             app.Navigator.GoToNewAdd();
@@ -41,7 +56,8 @@ namespace WebAddressbookTests
             Assert.AreEqual(oldAddresses, newAddresses);
             for (var i = 0; i < oldAddresses.Count; i++)
             Assert.AreEqual(oldAddresses[i], newAddresses[i]);
-        }
+        }       
+
         [Test]
         public void AddEmptyAddress()
         {
