@@ -103,9 +103,9 @@ namespace WebAddressbookTests
         [Test]
         public void TestDBConnectivity()
         {
-            foreach (AddressData address in GroupData.GetAll()[0].GetAddresses())
+            foreach (AddressData address in AddressData.GetAll())
             {
-                System.Console.Out.WriteLine(address);
+                System.Console.Out.WriteLine(address.Deprecated);
             }
         }
     }

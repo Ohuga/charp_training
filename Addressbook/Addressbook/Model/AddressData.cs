@@ -44,6 +44,10 @@ namespace WebAddressbookTests
         public string MobilePhone { get; set; }
         public string WorkPhone { get; set; }
 
+        [Column(Name = "deprecated")]
+        public string Deprecated { get; set; }
+
+
         public string AllPhones {
             get
             {
@@ -158,9 +162,20 @@ namespace WebAddressbookTests
             return "Fname = " + Fname + "\nLname = " + Lname;
         }
 
+
         public override int GetHashCode()
         {
             return Fname.GetHashCode() + Lname.GetHashCode();
         }
-    }
+
+        public static List<AddressData> GetAll()
+        {
+            using (AddressbookDB db = new AddressbookDB())
+            {
+                return (from c in db.Addresses.Where(x => x.Deprecated == "00.00.0000 0:00:00")  select c).ToList();
+            }
+        }
+     }
 }
+
+

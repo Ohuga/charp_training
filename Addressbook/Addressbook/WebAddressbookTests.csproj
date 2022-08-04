@@ -130,6 +130,7 @@
     <Compile Include="Other\Figure.cs" />
     <Compile Include="Model\GroupData.cs" />
     <Compile Include="AppManager\GroupHelper.cs" />
+    <Compile Include="Tests\AddingContactToGroupTests.cs" />
     <Compile Include="Tests\AddressModificationsTests.cs" />
     <Compile Include="Tests\AuthTestBase.cs" />
     <Compile Include="Tests\GroupTestBase.cs" />

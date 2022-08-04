@@ -26,6 +26,40 @@ namespace WebAddressbookTests
             }
             return this;
         }
+
+        public void AddAddressesToGroup(AddressData address, GroupData group)
+        {
+            manager.Navigator.GoToHomePage();
+            ClearGroupFilter();
+            SelectAddr(address.Id);
+            SelectGroupToAdd(group.Name);
+            CommitAddingAddressToGroup();
+            new WebDriverWait(driver, TimeSpan.FromSeconds(10))
+                .Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);
+
+
+        }
+
+        private void CommitAddingAddressToGroup()
+        {
+            driver.FindElement(By.Name("add")).Click();
+        }
+
+        private void SelectGroupToAdd(string name)
+        {
+            new SelectElement(driver.FindElement(By.Name("to_group"))).SelectByText(name);
+        }
+
+        private void SelectAddr(string addressId)
+        {
+            driver.FindElement(By.Id(addressId)).Click();
+        }
+
+        private void ClearGroupFilter()
+        {
+            new SelectElement(driver.FindElement(By.Name("group"))).SelectByText("[all]");
+        }
+
         private int GetSearchCount()
         {
             return int.Parse(driver.FindElement(By.Id("search_count")).Text);

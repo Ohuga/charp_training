@@ -75,7 +75,7 @@ namespace WebAddressbookTests
             using (AddressbookDB db = new AddressbookDB())
             {
                 return (from c in db.Addresses
-                        from gcr in db.GCR.Where (p => p.GroupId == Id && p.AddressId == c.Id) //??? contactID
+                        from gcr in db.GCR.Where (p => p.GroupId == Id && p.AddressId == c.Id && c.Deprecated == "00.00.0000 0:00:00") //??? contactID
                         select c).Distinct().ToList();
             }
         }
