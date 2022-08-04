@@ -15,11 +15,11 @@ using System.Linq;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class GroupCreationTests : AuthTestBase
+    public class GroupCreationTests : GroupTestBase
     {
        public static IEnumerable<GroupData> RandomGroupDataProvider ()
         {
-            List<GroupData> groups = new List<GroupData>();
+            List<GroupData> groups = GroupData.GetAll();
             for (int i=0; i < 5; i++)
             {
                 groups.Add(new GroupData(GenerateRandomString(30))
@@ -34,7 +34,7 @@ namespace WebAddressbookTests
 
         public static IEnumerable<GroupData> GroupDataFromCsvFile()
         {
-            List<GroupData> groups = new List<GroupData>();
+            List<GroupData> groups = GroupData.GetAll();
             string[] lines = File.ReadAllLines(@"groups.csv");
             foreach (string l in lines)
             {
@@ -99,6 +99,7 @@ namespace WebAddressbookTests
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
         }
+
         [Test]
         public void TestDBConnectivity()
         {
