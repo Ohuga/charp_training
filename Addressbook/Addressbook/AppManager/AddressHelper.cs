@@ -125,7 +125,7 @@ namespace WebAddressbookTests
                     addressCache.Add(new AddressData(fname, lname));
                 }
             }
-            return addressCache;
+            return  new List<AddressData>(addressCache);  
         }
 
         private List<AddressData> addressCache = null;
