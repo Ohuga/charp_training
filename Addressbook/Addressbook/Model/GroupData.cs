@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using LinqToDB.Mapping;
+using System.Linq;
 
 namespace WebAddressbookTests
 {
+    [Table(Name = "group_list")]
     public class GroupData : IEquatable<GroupData>, IComparable<GroupData>
     {
-        [Table(Name = "group_list")]
+        
         public GroupData()
         {
 
