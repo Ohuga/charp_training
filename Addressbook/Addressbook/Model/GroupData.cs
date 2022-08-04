@@ -50,16 +50,16 @@ namespace WebAddressbookTests
             return Name.CompareTo(other.Name);
         }
 
-        [Column(Name = "group_name")]
+        [Column(Name ="group_name")]
         public string Name { get; set; }
 
-        [Column(Name = "group_header")]
+        [Column(Name ="group_header")]
         public string Header { get; set; }
 
-        [Column(Name = "group_footer")]
+        [Column(Name ="group_footer")]
         public string Footer { get; set; }
 
-        [Column(Name = "group_id"), PrimaryKey, Identity]
+        [Column(Name ="group_id"), PrimaryKey, Identity]
         public string Id { get; set; }
 
         public static List<GroupData> GetAll()
@@ -70,6 +70,17 @@ namespace WebAddressbookTests
             }
 
         }
+        public List<AddressData> GetAddresses()
+        {
+            using (AddressbookDB db = new AddressbookDB())
+            {
+                return (from c in db.Addresses
+                        from gcr in db.GCR.Where (p => p.GroupId == Id && p.AddressId == c.Id) //??? contactID
+                        select c).Distinct().ToList();
+            }
+        }
+
+
 
     }
 }

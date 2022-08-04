@@ -96,22 +96,17 @@ namespace WebAddressbookTests
             List<GroupData> newGroups = app.Groups.GetGroupList();
             oldGroups.Add(group);
             oldGroups.Sort();
-            newGroups.Sort();
+            newGroups.Sort();            
             Assert.AreEqual(oldGroups, newGroups);
         }
 
         [Test]
         public void TestDBConnectivity()
         {
-            DateTime start = DateTime.Now;
-            List<GroupData> fromUI = app.Groups.GetGroupList();
-            DateTime end = DateTime.Now;
-            System.Console.Out.WriteLine(end.Subtract(start));
-
-            start = DateTime.Now;
-            List<GroupData> fromDb = GroupData.GetAll();
-            end = DateTime.Now;
-            System.Console.Out.WriteLine(end.Subtract(start));
+            foreach (AddressData address in GroupData.GetAll()[0].GetAddresses())
+            {
+                System.Console.Out.WriteLine(address);
+            }
         }
     }
 }
