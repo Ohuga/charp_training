@@ -18,6 +18,8 @@ namespace WebAddressbookTests
         {
         }
 
+        
+
         public AddressHelper AddIfEmptyList()
         {
             if (GetSearchCount() == 0)
@@ -36,8 +38,15 @@ namespace WebAddressbookTests
             CommitAddingAddressToGroup();
             new WebDriverWait(driver, TimeSpan.FromSeconds(10))
                 .Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);
+        }
 
-
+        public void RemoveAddressFromGroup(AddressData address, GroupData group)
+        {
+            manager.Navigator.GoToHomePage();
+            SetGroupFilter(group.Name);
+            SelectAddr(address.Id);
+            driver.FindElement(By.Name("remove")).Click();
+            manager.Navigator.GoToHomePage();
         }
 
         private void CommitAddingAddressToGroup()
@@ -58,6 +67,10 @@ namespace WebAddressbookTests
         private void ClearGroupFilter()
         {
             new SelectElement(driver.FindElement(By.Name("group"))).SelectByText("[all]");
+        }
+        private void SetGroupFilter(string name)
+        {
+            new SelectElement(driver.FindElement(By.Name("group"))).SelectByText(name);
         }
 
         private int GetSearchCount()

@@ -10,6 +10,21 @@ namespace WebAddressbookTests
     public class AddingContactToGroupTests : AuthTestBase
     {
         [Test]
+        public void TestRemoveContactFromGroup()
+        {
+            var group = GroupData.GetAll()[0];
+            var oldList = group.GetAddresses();
+            var address = oldList[0];
+            app.Address.RemoveAddressFromGroup(address, group);
+
+            var newList = group.GetAddresses();
+            oldList.Remove(address);
+            oldList.Sort();
+            newList.Sort();
+            Assert.AreEqual(oldList, newList);
+        }
+
+        [Test]
         public void TestAddingContactToGroup()
         {
             GroupData group = GroupData.GetAll()[0];
