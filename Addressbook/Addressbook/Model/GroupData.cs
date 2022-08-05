@@ -68,7 +68,6 @@ namespace WebAddressbookTests
             {
                 return (from g in db.Groups select g).ToList();
             }
-
         }
         public List<AddressData> GetAddresses()
         {

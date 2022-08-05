@@ -148,18 +148,35 @@ namespace WebAddressbookTests
         {
             if (addressCache == null)
             {
-                addressCache = new List<AddressData>();
-                manager.Navigator.GoToAddressPage();
-                ICollection<IWebElement> elements = manager.Navigator.GetCollection("entry");
-                foreach (IWebElement element in elements)
-                {
-                    ReadOnlyCollection<IWebElement> names = element.FindElements(By.TagName("td"));
-                    String lname = names[1].Text;
-                    String fname = names[2].Text;
-                    addressCache.Add(new AddressData(fname, lname));
-                }
+                addressCache = AddressData.GetAll();
+                //addressCache = new List<AddressData>();
+                //manager.Navigator.GoToAddressPage();
+                //ICollection<IWebElement> elements = manager.Navigator.GetCollection("entry");
+                //foreach (IWebElement element in elements)
+                //{
+                //    ReadOnlyCollection<IWebElement> names = element.FindElements(By.TagName("td"));
+                //    String lname = names[1].Text;
+                //    String fname = names[2].Text;
+                //    addressCache.Add(new AddressData(fname, lname));
+                //}
             }
             return  new List<AddressData>(addressCache);  
+        }
+
+        public List<AddressData> GetAddressListFromUI()
+        {
+            var res = new List<AddressData>();
+                manager.Navigator.GoToAddressPage();
+                ICollection<IWebElement> elements = manager.Navigator.GetCollection("entry");
+            foreach (IWebElement element in elements)
+            {
+                ReadOnlyCollection<IWebElement> names = element.FindElements(By.TagName("td"));
+                String lname = names[1].Text;
+                String fname = names[2].Text;
+                res.Add(new AddressData(fname, lname));
+            }
+
+            return res;
         }
 
         private List<AddressData> addressCache = null;

@@ -31,33 +31,28 @@ namespace WebAddressbookTests
 
         public List<GroupData> GetGroupList()
         {
+            // Todo add GetAll from DB
             if (groupCache == null)
             {
-                groupCache = new  List<GroupData>();            
-                manager.Navigator.GoToGroupPage();
-                ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
-                foreach (IWebElement element in elements)
-                {
-                    groupCache.Add(new GroupData(element.Text)
-                    {
-                        Id = element.FindElement(By.TagName("input")).GetAttribute("value")
-                    });                
-                }
-                /*
-                string allGroupNames = driver.FindElement(By.CssSelector("div#content from")).Text;
-                string[] parts = allGroupNames.Split('\n');
-                int shift = groupCache.Count - parts.Length;
-                for(int i = 0; i < groupCache.Count; ++i)
-                {
-                    if (i < shift)
-                        groupCache[i].Name = "";
-                    else
-                        groupCache[i].Name = parts[i - shift].Trim();
-                }*/
+                groupCache = GroupData.GetAll();
             }
             return new List<GroupData>(groupCache);
         }
+        public List<GroupData> GetGroupListFromUI()
+        {
+            var res = new List<GroupData>();         
+                manager.Navigator.GoToGroupPage();
+                ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
 
+            foreach (IWebElement element in elements)
+            {
+                res.Add(new GroupData(element.Text)
+                {
+                    Id = element.FindElement(By.TagName("input")).GetAttribute("value")
+                });
+            }       
+            return res;
+        }
         public GroupHelper Create(GroupData group)
         {
             manager.Navigator.GoToGroupPage();

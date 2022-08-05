@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
+﻿using System.Collections.Generic;
 using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Support.UI;
 
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class RemoveAdd : AuthTestBase
+    public class RemoveAdd : AddressTestBase
     {
         [Test]
         public void RemoveAddresses()
@@ -25,14 +18,11 @@ namespace WebAddressbookTests
             List<AddressData> newAddresses = app.Address.GetAddressList();
 
             Assert.AreEqual(oldAddresses.Count - 1, newAddresses.Count);
-            oldAddresses.RemoveAt(0);
             oldAddresses.Sort();
             newAddresses.Sort();
+            oldAddresses.RemoveAt(0);          
+            
             Assert.AreEqual(oldAddresses, newAddresses);
-            for (var i = 0; i < oldAddresses.Count; i++)
-                Assert.AreEqual(oldAddresses[i], newAddresses[i]);
-
-
         }
     }
 }
