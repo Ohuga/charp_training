@@ -11,21 +11,21 @@ namespace WebAddressbookTests
             app.Address.GoToAddressPage()
             .AddIfEmptyList();
             var old = app.Address.GetAddressList();
+            var targetAddress = old[0];
             var newAddr = new AddressData { Fname = "234", Lname = "345" };
-            app.Address.InitAddressModification(1)
+            app.Address.InitAddressModificationById(targetAddress.Id)
             .FillNewAdd(newAddr)
             .SubmitAddressModification()
             .ReturnToAddressPage();
-   
-            old[0].Fname = newAddr.Fname;
-            old[0].Lname = newAddr.Lname;
+
+            targetAddress.Fname = newAddr.Fname;
+            targetAddress.Lname = newAddr.Lname;
             //get current list
             var current = app.Address.GetAddressList();
             Assert.AreEqual(old, current);
             old.Sort();
             current.Sort();
-            for(var i = 0; i < old.Count; i++)
-            Assert.AreEqual(old[i], current[i]);
+            Assert.AreEqual(old, current);
          
         }
     }

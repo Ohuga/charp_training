@@ -14,13 +14,14 @@ namespace WebAddressbookTests
 
 
             List<AddressData> oldAddresses = app.Address.GetAddressList();
-            app.Address.RemoveAddress(1).GoToAddressPage();  
+            var target = oldAddresses[0];
+            app.Address.RemoveAddressById(target.Id).GoToAddressPage();  
             List<AddressData> newAddresses = app.Address.GetAddressList();
 
             Assert.AreEqual(oldAddresses.Count - 1, newAddresses.Count);
             oldAddresses.Sort();
             newAddresses.Sort();
-            oldAddresses.RemoveAt(0);          
+            oldAddresses.Remove(target);          
             
             Assert.AreEqual(oldAddresses, newAddresses);
         }

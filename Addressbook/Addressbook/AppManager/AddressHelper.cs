@@ -103,6 +103,14 @@ namespace WebAddressbookTests
             CloseWindow();
             return this;
         }
+        public AddressHelper RemoveAddressById(string id)
+        {
+            GoToAddressPage();
+            SelectAddressById(id);
+            DeleteAddress();
+            CloseWindow();
+            return this;
+        }
 
         public AddressHelper CloseWindow()
         {
@@ -123,6 +131,11 @@ namespace WebAddressbookTests
             driver.FindElement(By.XPath("//div[@id='content']/form[2]/table/tbody/tr["+(p+1)+"]/td[1]/input")).Click();
             return this;
         }
+        public AddressHelper SelectAddressById(string id)
+        {
+            driver.FindElement(By.Id(id)).Click();
+            return this;
+        }
 
         public AddressHelper GoToAddressPage()
         {
@@ -141,6 +154,13 @@ namespace WebAddressbookTests
         {
             //driver.FindElement(By.Name("edit")).Click();
             driver.FindElement(By.XPath("//div[@id='content']/form[2]/table/tbody/tr[" + (p + 1) + "]/td[8]/a")).Click();
+            return this;
+        }
+
+        public AddressHelper InitAddressModificationById(string id)
+        {
+            //driver.FindElement(By.Name("edit")).Click();
+            driver.FindElement(By.CssSelector($"a[href=\"edit.php?id={id}\"")).Click();
             return this;
         }
 
