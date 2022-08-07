@@ -22,9 +22,11 @@ namespace WebAddressbookTests
 
         public AddressHelper AddIfEmptyList()
         {
+            manager.Navigator.GoToHomePage();
             if (GetSearchCount() == 0)
             {
-                FillNewAdd(new AddressData { Fname = "1", Lname = "2" }).SubmitNewAdd();
+                AddAddress(new AddressData { Fname = "1", Lname = "2" });
+                //FillNewAdd().SubmitNewAdd();
             }
             return this;
         }
